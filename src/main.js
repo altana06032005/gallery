@@ -1,6 +1,7 @@
 import './style.css';
-import { SceneManager } from './scene.js';
-import { UIManager } from './ui.js';
+import './scene.js';
+import './ui.js';
+import './data.js';
 
 // 1. Получаем canvas
 const canvas = document.querySelector('#bg-canvas');
