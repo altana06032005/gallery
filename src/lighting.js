@@ -8,10 +8,10 @@ export class LightingManager {
         this.lastInteraction = Date.now();
 
         // Configuration
-        this.IDLE_DELAY = 5000; // Time in ms before darkening starts
+        this.IDLE_DELAY = 4000; // Time in ms before darkening starts
         this.MAX_OPACITY = 0.85; // Maximum darkness
         this.DARKEN_SPEED = 0.01; // Opacity increase per frame
-        this.BRIGHTEN_SPEED = 0.005; // Opacity decrease per frame (smooth recovery)
+        this.BRIGHTEN_SPEED = 0.003; // Opacity decrease per frame (smooth recovery)
 
         this.init();
     }
