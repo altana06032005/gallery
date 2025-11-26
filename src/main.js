@@ -2,6 +2,8 @@ import './style.css';
 import { SceneManager } from './scene.js';
 import { UIManager } from './ui.js';
 
+import { LightingManager } from './lighting.js';
+
 // 1. Получаем canvas
 const canvas = document.querySelector('#bg-canvas');
 
@@ -17,5 +19,8 @@ const ui = new UIManager(() => {
 scene = new SceneManager(canvas, (planetId) => {
     ui.showCatalog(planetId); // откроет каталог выбранной категории
 });
+
+// 5. Инициализируем LightingManager
+new LightingManager();
 
 

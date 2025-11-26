@@ -13,6 +13,9 @@ export class UIManager {
         this.filterBtn = document.getElementById('filter-btn');
         this.filterPanel = document.getElementById('filter-panel');
 
+        this.filterPanel = document.getElementById('filter-panel');
+        this.detailView = null; // Will be created in init
+
         this.init();
 
         this.scrollY = 0;
@@ -63,6 +66,63 @@ export class UIManager {
 
         this.catalogContent.addEventListener('touchend', () => {
             this.isTouching = false;
+        });
+        this.catalogContent.addEventListener('touchend', () => {
+            this.isTouching = false;
+        });
+
+        this.createDetailView();
+    }
+
+    createDetailView() {
+        this.detailView = document.createElement('div');
+        this.detailView.id = 'detail-view';
+        this.detailView.innerHTML = `
+            <button id="detail-back-btn">BACK TO CATALOG</button>
+            <div class="detail-content">
+                <div class="detail-image"></div>
+                <div class="detail-info">
+                    <h2 class="detail-title"></h2>
+                    <h3 class="detail-artist"></h3>
+                    <p class="detail-description"></p>
+                    <div class="detail-tags"></div>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(this.detailView);
+
+        const backBtn = this.detailView.querySelector('#detail-back-btn');
+        backBtn.addEventListener('click', () => this.hideDetailView());
+    }
+
+    showDetailView(work) {
+        // Populate data
+        const img = this.detailView.querySelector('.detail-image');
+        img.style.backgroundImage = `url('${work.image}')`;
+
+        this.detailView.querySelector('.detail-title').textContent = work.title;
+        this.detailView.querySelector('.detail-artist').textContent = `// ${work.artist} (${work.year})`;
+        this.detailView.querySelector('.detail-description').textContent = work.description;
+        this.detailView.querySelector('.detail-tags').innerHTML = work.tags.map(t => `<span>[${t}]</span>`).join('');
+
+        // Show overlay
+        this.detailView.classList.add('active');
+
+        // Animate in
+        gsap.fromTo(this.detailView.querySelector('.detail-content'),
+            { opacity: 0, y: 50 },
+            { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }
+        );
+    }
+
+    hideDetailView() {
+        gsap.to(this.detailView.querySelector('.detail-content'), {
+            opacity: 0,
+            y: 50,
+            duration: 0.3,
+            onComplete: () => {
+                this.detailView.classList.remove('active');
+            }
         });
     }
 
@@ -323,6 +383,11 @@ export class UIManager {
         </div>
       `;
             this.catalogContent.appendChild(card);
+
+            // Click listener for detail view
+            card.addEventListener('click', () => {
+                this.showDetailView(work);
+            });
         });
 
         // Staggered Reveal (Opacity only to avoid transform conflicts)

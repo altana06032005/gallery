@@ -6,132 +6,84 @@ export const categories = [
     description: 'The art of visual storytelling.',
     works: [
       {
-        title: 'Fables Covers',
-        artist: 'James Jean',
-        year: '2002-2015',
-        description: 'Surreal and intricate cover art for the Fables comic series.',
-        image: 'https://picsum.photos/id/1015/400/300',
-        tags: ['Surrealism', 'Fantasy']
+        title: 'Alice in Wonderland',
+        artist: 'John Tenniel',
+        year: '1865',
+        description: 'Classic illustrations defining the visual language of the characters.',
+        image: 'https://picsum.photos/id/10/400/300',
+        tags: ['Classic', 'Book']
+      },
+      {
+        title: 'Where the Wild Things Are',
+        artist: 'Maurice Sendak',
+        year: '1963',
+        description: 'Emotional children’s illustrations combining humor and dark themes.',
+        image: 'https://picsum.photos/id/11/400/300',
+        tags: ['Children', 'Dark']
+      },
+      {
+        title: 'Obey Giant / Hope Poster',
+        artist: 'Shepard Fairey',
+        year: '2008',
+        description: 'Iconic street and political graphics.',
+        image: 'https://picsum.photos/id/12/400/300',
+        tags: ['Street Art', 'Political']
       },
       {
         title: 'Studio Ghibli Concept Art',
         artist: 'Hayao Miyazaki',
         year: '1985-Present',
-        description: 'Whimsical and detailed watercolor concepts for legendary films.',
-        image: 'https://picsum.photos/id/1016/400/300',
-        tags: ['Fantasy', 'Watercolor']
+        description: 'Unique Japanese animation visual style.',
+        image: 'https://picsum.photos/id/13/400/300',
+        tags: ['Anime', 'Concept']
       },
       {
-        title: 'Everydays',
-        artist: 'Beeple',
-        year: '2007-Present',
-        description: 'A daily digital art project exploring sci-fi and dystopian themes.',
-        image: 'https://picsum.photos/id/1018/400/300',
-        tags: ['Digital', 'Sci-Fi', '3D']
+        title: 'Hunter S. Thompson Art',
+        artist: 'Ralph Steadman',
+        year: '1970s',
+        description: 'Psychedelic and aggressive style.',
+        image: 'https://picsum.photos/id/14/400/300',
+        tags: ['Psychedelic', 'Ink']
       },
       {
-        title: 'Cyberpunk 2077',
-        artist: 'CD Projekt Red',
-        year: '2020',
-        description: 'Neon-soaked streets and cybernetic enhancements.',
-        image: 'https://picsum.photos/id/1019/400/300',
-        tags: ['Cyberpunk', 'Concept']
+        title: 'Sci-Fi & Fantasy Art',
+        artist: 'Jean Giraud / Moebius',
+        year: '1970s-2000s',
+        description: 'Influential European comics and concept art.',
+        image: 'https://picsum.photos/id/15/400/300',
+        tags: ['Sci-Fi', 'Comics']
       },
       {
-        title: 'Blade Runner 2049',
-        artist: 'Syd Mead (Legacy)',
-        year: '2017',
-        description: 'Visually stunning futuristic environments.',
-        image: 'https://picsum.photos/id/1020/400/300',
-        tags: ['Sci-Fi', 'Film']
+        title: 'Peter Rabbit',
+        artist: 'Beatrix Potter',
+        year: '1902',
+        description: 'Classic children’s illustration with subtle depiction of nature.',
+        image: 'https://picsum.photos/id/16/400/300',
+        tags: ['Classic', 'Nature']
       },
       {
-        title: 'Akira',
-        artist: 'Katsuhiro Otomo',
-        year: '1988',
-        description: 'The landmark anime that defined a generation of sci-fi.',
-        image: 'https://picsum.photos/id/1021/400/300',
-        tags: ['Anime', 'Classic']
+        title: 'Disney Concept Art',
+        artist: 'Mary Blair',
+        year: '1940s-1960s',
+        description: 'Color and style defining Disney’s visual language.',
+        image: 'https://picsum.photos/id/17/400/300',
+        tags: ['Concept', 'Disney']
       },
       {
-        title: 'Ghost in the Shell',
-        artist: 'Masamune Shirow',
-        year: '1989',
-        description: 'Cyberpunk manga exploring the nature of consciousness.',
-        image: 'https://picsum.photos/id/1060/400/300',
-        tags: ['Manga', 'Cyberpunk']
+        title: 'Roald Dahl Illustrations',
+        artist: 'Quentin Blake',
+        year: 'Various',
+        description: 'Expressive, recognizable children’s book style.',
+        image: 'https://picsum.photos/id/18/400/300',
+        tags: ['Children', 'Expressive']
       },
       {
-        title: 'Paprika',
-        artist: 'Satoshi Kon',
-        year: '2006',
-        description: 'A visual masterpiece blurring dreams and reality.',
-        image: 'https://picsum.photos/id/1061/400/300',
-        tags: ['Anime', 'Surreal']
-      },
-      {
-        title: 'Tekkonkinkreet',
-        artist: 'Taiyo Matsumoto',
-        year: '2006',
-        description: 'Unique art style depicting life in Treasure Town.',
-        image: 'https://picsum.photos/id/1062/400/300',
-        tags: ['Anime', 'Urban']
-      },
-      {
-        title: 'Summer Wars',
-        artist: 'Mamoru Hosoda',
-        year: '2009',
-        description: 'A family drama set against a digital crisis.',
-        image: 'https://picsum.photos/id/1063/400/300',
-        tags: ['Anime', 'Digital']
-      },
-      {
-        title: 'Your Name',
-        artist: 'Makoto Shinkai',
-        year: '2016',
-        description: 'Breathtaking visuals and a touching story of connection.',
-        image: 'https://picsum.photos/id/1064/400/300',
-        tags: ['Anime', 'Romance']
-      },
-      {
-        title: 'Weathering with You',
-        artist: 'Makoto Shinkai',
-        year: '2019',
-        description: 'Stunning rain effects and urban landscapes.',
-        image: 'https://picsum.photos/id/1065/400/300',
-        tags: ['Anime', 'Fantasy']
-      },
-      {
-        title: 'The Garden of Words',
-        artist: 'Makoto Shinkai',
-        year: '2013',
-        description: 'Photorealistic animation of a rainy season encounter.',
-        image: 'https://picsum.photos/id/1066/400/300',
-        tags: ['Anime', 'Drama']
-      },
-      {
-        title: '5 Centimeters per Second',
-        artist: 'Makoto Shinkai',
-        year: '2007',
-        description: 'A tale of distance and longing told in three parts.',
-        image: 'https://picsum.photos/id/1067/400/300',
-        tags: ['Anime', 'Romance']
-      },
-      {
-        title: 'Princess Mononoke',
-        artist: 'Hayao Miyazaki',
-        year: '1997',
-        description: 'An epic struggle between nature and industry.',
-        image: 'https://picsum.photos/id/1068/400/300',
-        tags: ['Anime', 'Fantasy']
-      },
-      {
-        title: 'Spirited Away',
-        artist: 'Hayao Miyazaki',
-        year: '2001',
-        description: 'A young girl\'s journey through a spirit world.',
-        image: 'https://picsum.photos/id/1069/400/300',
-        tags: ['Anime', 'Fantasy']
+        title: 'Tim Burton Art',
+        artist: 'Tim Burton',
+        year: 'Various',
+        description: 'Gothic, distinctive style inspiring film and merchandising.',
+        image: 'https://picsum.photos/id/19/400/300',
+        tags: ['Gothic', 'Film']
       }
     ]
   },
@@ -142,220 +94,172 @@ export const categories = [
     description: 'Visual communication and problem solving.',
     works: [
       {
+        title: 'Citibank & Public Theater',
+        artist: 'Paula Scher',
+        year: 'Various',
+        description: 'Dynamic visual solutions of modern graphic design.',
+        image: 'https://picsum.photos/id/20/400/300',
+        tags: ['Branding', 'Typography']
+      },
+      {
+        title: 'NYC Subway Map',
+        artist: 'Massimo Vignelli',
+        year: '1972',
+        description: 'Minimalism and systematic approach to infographics.',
+        image: 'https://picsum.photos/id/21/400/300',
+        tags: ['Map', 'System']
+      },
+      {
         title: 'Movie Posters',
         artist: 'Saul Bass',
         year: '1950s-1990s',
-        description: 'Minimalist and symbolic poster designs for Hitchcock and others.',
-        image: 'https://picsum.photos/id/1025/400/300',
-        tags: ['Minimalism', 'Poster']
+        description: 'Iconic poster and title design.',
+        image: 'https://picsum.photos/id/22/400/300',
+        tags: ['Poster', 'Film']
       },
       {
-        title: 'Public Theater Posters',
-        artist: 'Paula Scher',
-        year: '1994-Present',
-        description: 'Expressive typography that defined the identity of The Public Theater.',
-        image: 'https://picsum.photos/id/1024/400/300',
-        tags: ['Typography', 'Branding']
-      },
-      {
-        title: 'Exhibition Graphics',
-        artist: 'Stefan Sagmeister',
-        year: '1990s-Present',
-        description: 'Provocative and experimental graphic design works.',
-        image: 'https://picsum.photos/id/1023/400/300',
-        tags: ['Experimental', 'Typography']
-      },
-      {
-        title: 'Swiss Style',
-        artist: 'Josef Müller-Brockmann',
-        year: '1950s',
-        description: 'Grid systems and clean typography.',
-        image: 'https://picsum.photos/id/1070/400/300',
-        tags: ['Swiss', 'Minimalism']
-      },
-      {
-        title: 'New York Subway Map',
-        artist: 'Massimo Vignelli',
-        year: '1972',
-        description: 'A modernist masterpiece of information design.',
-        image: 'https://picsum.photos/id/1071/400/300',
-        tags: ['Map', 'Modernism']
-      },
-      {
-        title: 'I Love NY',
+        title: 'I ❤️ NY Logo',
         artist: 'Milton Glaser',
         year: '1977',
-        description: 'The iconic logo that defined a city.',
-        image: 'https://picsum.photos/id/1072/400/300',
+        description: 'Simple and emotionally powerful logo.',
+        image: 'https://picsum.photos/id/23/400/300',
         tags: ['Logo', 'Iconic']
       },
       {
-        title: 'Ray Gun Magazine',
-        artist: 'David Carson',
-        year: '1990s',
-        description: 'Grunge typography and rule-breaking layouts.',
-        image: 'https://picsum.photos/id/1073/400/300',
-        tags: ['Grunge', 'Typography']
+        title: 'The Face Magazine',
+        artist: 'Neville Brody',
+        year: '1980s',
+        description: 'Typography and layout experimentation of the 1980s.',
+        image: 'https://picsum.photos/id/24/400/300',
+        tags: ['Magazine', 'Typography']
       },
       {
-        title: 'IBM Logo',
-        artist: 'Paul Rand',
-        year: '1972',
-        description: 'Timeless corporate identity design.',
-        image: 'https://picsum.photos/id/1074/400/300',
-        tags: ['Logo', 'Corporate']
+        title: 'Album Covers',
+        artist: 'Stefan Sagmeister',
+        year: 'Various',
+        description: 'Innovative and experimental graphic work.',
+        image: 'https://picsum.photos/id/25/400/300',
+        tags: ['Music', 'Experimental']
       },
       {
-        title: 'AT&T Logo',
-        artist: 'Saul Bass',
-        year: '1983',
-        description: 'A global symbol of communication.',
-        image: 'https://picsum.photos/id/1075/400/300',
-        tags: ['Logo', 'Corporate']
+        title: 'Avant Garde Typography',
+        artist: 'Herb Lubalin',
+        year: '1960s-1970s',
+        description: 'New approaches to type and composition.',
+        image: 'https://picsum.photos/id/26/400/300',
+        tags: ['Typography', 'Avant Garde']
       },
       {
-        title: 'Obey Giant',
-        artist: 'Shepard Fairey',
-        year: '1989',
-        description: 'Street art phenomenon turned global brand.',
-        image: 'https://picsum.photos/id/1076/400/300',
-        tags: ['Street Art', 'Iconic']
+        title: 'Swiss Typography',
+        artist: 'Wolfgang Weingart',
+        year: '1970s',
+        description: 'Flexible, expressive Swiss style.',
+        image: 'https://picsum.photos/id/27/400/300',
+        tags: ['Swiss', 'Typography']
       },
       {
-        title: 'Hope Poster',
-        artist: 'Shepard Fairey',
-        year: '2008',
-        description: 'A defining image of a political campaign.',
-        image: 'https://picsum.photos/id/1077/400/300',
-        tags: ['Political', 'Portrait']
+        title: 'Conceptual Graphic Art',
+        artist: 'Barbara Kruger',
+        year: '1980s',
+        description: 'Socio-political graphics combining text and imagery.',
+        image: 'https://picsum.photos/id/28/400/300',
+        tags: ['Art', 'Political']
       },
       {
-        title: 'Bauhaus Posters',
-        artist: 'Various',
-        year: '1920s',
-        description: 'The birth of modern graphic design.',
-        image: 'https://picsum.photos/id/1078/400/300',
-        tags: ['Bauhaus', 'Modernism']
-      },
-      {
-        title: 'Constructivism',
-        artist: 'El Lissitzky',
-        year: '1920s',
-        description: 'Dynamic compositions and geometric shapes.',
-        image: 'https://picsum.photos/id/1079/400/300',
-        tags: ['Constructivism', 'Geometric']
+        title: 'Joy Division Covers',
+        artist: 'Peter Saville',
+        year: '1979',
+        description: 'Musical visual identity that became iconic.',
+        image: 'https://picsum.photos/id/29/400/300',
+        tags: ['Music', 'Minimalism']
       }
     ]
   },
   {
     id: 'ui-ux',
-    name: 'UI/UX & Web',
+    name: 'UI/UX Design',
     color: 0x55ff00, // Lime Green
     description: 'Designing digital interfaces and experiences.',
     works: [
       {
-        title: 'Human Interface Guidelines',
+        title: 'Apple HIG & iOS',
         artist: 'Apple',
         year: 'Ongoing',
-        description: 'The gold standard for intuitive and consistent user interfaces.',
-        image: 'https://picsum.photos/id/1033/400/300',
-        tags: ['System', 'Clean']
+        description: 'Benchmark for user-friendly UX and minimalist UI.',
+        image: 'https://picsum.photos/id/30/400/300',
+        tags: ['System', 'Mobile']
       },
       {
         title: 'Material Design',
         artist: 'Google',
-        year: '2014-Present',
-        description: 'A design language synthesizing classic principles of good design with innovation.',
-        image: 'https://picsum.photos/id/1035/400/300',
-        tags: ['System', 'Modern']
+        year: '2014',
+        description: 'Systematic approach with colors, icons, and animations.',
+        image: 'https://picsum.photos/id/31/400/300',
+        tags: ['System', 'Web']
+      },
+      {
+        title: 'Dropbox Redesign',
+        artist: 'Dropbox',
+        year: '2017',
+        description: 'Clean interface and simple navigation.',
+        image: 'https://picsum.photos/id/32/400/300',
+        tags: ['Web', 'Clean']
       },
       {
         title: 'Airbnb Redesign',
-        artist: 'Airbnb Design',
+        artist: 'Airbnb',
         year: '2014',
-        description: 'A massive rebrand and UI overhaul focusing on belonging.',
-        image: 'https://picsum.photos/id/1036/400/300',
-        tags: ['Case Study', 'Product']
+        description: 'Personalized UX and smooth user flow.',
+        image: 'https://picsum.photos/id/33/400/300',
+        tags: ['App', 'Travel']
       },
       {
-        title: 'Stripe Homepage',
-        artist: 'Stripe',
-        year: 'Ongoing',
-        description: 'Setting the standard for SaaS web design.',
-        image: 'https://picsum.photos/id/1080/400/300',
-        tags: ['Web', 'SaaS']
-      },
-      {
-        title: 'Linear App',
-        artist: 'Linear',
-        year: 'Ongoing',
-        description: 'Minimalist and high-performance issue tracking.',
-        image: 'https://picsum.photos/id/1081/400/300',
-        tags: ['Product', 'Minimalism']
-      },
-      {
-        title: 'Notion',
-        artist: 'Notion Labs',
-        year: 'Ongoing',
-        description: 'A unified workspace for notes and tasks.',
-        image: 'https://picsum.photos/id/1082/400/300',
-        tags: ['Product', 'Productivity']
-      },
-      {
-        title: 'Figma',
-        artist: 'Figma',
-        year: 'Ongoing',
-        description: 'Collaborative interface design tool.',
-        image: 'https://picsum.photos/id/1083/400/300',
-        tags: ['Tool', 'Collaboration']
-      },
-      {
-        title: 'Spotify Mobile',
+        title: 'Spotify App',
         artist: 'Spotify',
         year: 'Ongoing',
-        description: 'Dark mode and content-first design.',
-        image: 'https://picsum.photos/id/1084/400/300',
-        tags: ['Mobile', 'Streaming']
+        description: 'Adaptive interface and visual identity.',
+        image: 'https://picsum.photos/id/34/400/300',
+        tags: ['App', 'Music']
       },
       {
-        title: 'Netflix TV UI',
-        artist: 'Netflix',
+        title: 'Instagram UI',
+        artist: 'Instagram',
         year: 'Ongoing',
-        description: 'Cinematic browsing experience on the big screen.',
-        image: 'https://picsum.photos/id/1085/400/300',
-        tags: ['TV', 'Streaming']
+        description: 'Minimalist design emphasizing visual content.',
+        image: 'https://picsum.photos/id/35/400/300',
+        tags: ['App', 'Social']
       },
       {
-        title: 'Uber App',
-        artist: 'Uber',
+        title: 'Medium',
+        artist: 'Medium',
         year: 'Ongoing',
-        description: 'Simplifying complex logistics into a map interface.',
-        image: 'https://picsum.photos/id/1086/400/300',
-        tags: ['Mobile', 'Utility']
+        description: 'Comfortable UX for reading with good typography.',
+        image: 'https://picsum.photos/id/36/400/300',
+        tags: ['Web', 'Reading']
       },
       {
         title: 'Duolingo',
         artist: 'Duolingo',
         year: 'Ongoing',
-        description: 'Gamification of learning with playful characters.',
-        image: 'https://picsum.photos/id/1087/400/300',
-        tags: ['Mobile', 'Gamification']
+        description: 'Gamified UX for engagement and learning.',
+        image: 'https://picsum.photos/id/37/400/300',
+        tags: ['App', 'Gamification']
       },
       {
-        title: 'Headspace',
-        artist: 'Headspace',
+        title: 'Tesla Interface',
+        artist: 'Tesla',
         year: 'Ongoing',
-        description: 'Friendly and calming meditation app design.',
-        image: 'https://picsum.photos/id/1088/400/300',
-        tags: ['Mobile', 'Wellness']
+        description: 'Innovative UX for physical products.',
+        image: 'https://picsum.photos/id/38/400/300',
+        tags: ['Auto', 'Interface']
       },
       {
-        title: 'Discord',
-        artist: 'Discord',
+        title: 'Notion',
+        artist: 'Notion',
         year: 'Ongoing',
-        description: 'Community-focused chat and voice platform.',
-        image: 'https://picsum.photos/id/1089/400/300',
-        tags: ['Desktop', 'Community']
+        description: 'Customizable interface with flexible usage.',
+        image: 'https://picsum.photos/id/39/400/300',
+        tags: ['App', 'Productivity']
       }
     ]
   },
@@ -366,332 +270,260 @@ export const categories = [
     description: 'Creating unique identities for products and companies.',
     works: [
       {
-        title: 'Brand Evolution',
+        title: 'Coca-Cola',
         artist: 'Coca-Cola',
-        year: '1886-Present',
-        description: 'The journey of one of the most recognized logos in the world.',
-        image: 'https://picsum.photos/id/1040/400/300',
-        tags: ['Identity', 'Classic']
+        year: '1886',
+        description: 'Globally recognized brand.',
+        image: 'https://picsum.photos/id/40/400/300',
+        tags: ['Identity', 'Global']
       },
       {
-        title: 'Just Do It',
-        artist: 'Nike',
-        year: '1988',
-        description: 'A campaign and identity that became a cultural phenomenon.',
-        image: 'https://picsum.photos/id/1041/400/300',
-        tags: ['Identity', 'Sports']
+        title: 'Nike Swoosh',
+        artist: 'Carolyn Davidson',
+        year: '1971',
+        description: 'Iconic logo and slogan.',
+        image: 'https://picsum.photos/id/41/400/300',
+        tags: ['Logo', 'Sports']
       },
       {
-        title: 'Starbucks Redesign',
-        artist: 'Lippincott',
-        year: '2011',
-        description: 'Simplifying the siren to signal a global lifestyle brand.',
-        image: 'https://picsum.photos/id/1042/400/300',
-        tags: ['Redesign', 'Minimalism']
+        title: 'Apple Branding',
+        artist: 'Apple',
+        year: 'Ongoing',
+        description: 'Minimalism and premium appeal.',
+        image: 'https://picsum.photos/id/42/400/300',
+        tags: ['Identity', 'Tech']
       },
       {
-        title: 'Mastercard',
-        artist: 'Pentagram',
-        year: '2016',
-        description: 'Modernizing the intersecting circles.',
-        image: 'https://picsum.photos/id/1090/400/300',
-        tags: ['Redesign', 'Finance']
+        title: 'Starbucks',
+        artist: 'Starbucks',
+        year: 'Ongoing',
+        description: 'Strong brand style and atmosphere.',
+        image: 'https://picsum.photos/id/43/400/300',
+        tags: ['Identity', 'Coffee']
       },
       {
-        title: 'Slack',
-        artist: 'Pentagram',
-        year: '2019',
-        description: 'Refining the hashtag for a new era.',
-        image: 'https://picsum.photos/id/1091/400/300',
-        tags: ['Redesign', 'Tech']
+        title: 'Google Branding',
+        artist: 'Google',
+        year: 'Ongoing',
+        description: 'Color identity and simplicity.',
+        image: 'https://picsum.photos/id/44/400/300',
+        tags: ['Identity', 'Tech']
       },
       {
-        title: 'Dropbox',
-        artist: 'Collins',
-        year: '2017',
-        description: 'Unleashing creativity with a bold new look.',
-        image: 'https://picsum.photos/id/1092/400/300',
-        tags: ['Rebrand', 'Bold']
+        title: 'IBM Logo',
+        artist: 'Paul Rand',
+        year: '1972',
+        description: 'Corporate identity example.',
+        image: 'https://picsum.photos/id/45/400/300',
+        tags: ['Logo', 'Corporate']
       },
       {
-        title: 'Chobani',
-        artist: 'In-house',
-        year: '2017',
-        description: 'Warm, nostalgic typography for a food brand.',
-        image: 'https://picsum.photos/id/1093/400/300',
-        tags: ['Packaging', 'Food']
+        title: 'FedEx Logo',
+        artist: 'Lindon Leader',
+        year: '1994',
+        description: 'Hidden arrow and visual meaning.',
+        image: 'https://picsum.photos/id/46/400/300',
+        tags: ['Logo', 'Clever']
       },
       {
-        title: 'Burger King',
-        artist: 'Jones Knowles Ritchie',
-        year: '2021',
-        description: 'Retro-inspired rebrand celebrating real food.',
-        image: 'https://picsum.photos/id/1094/400/300',
-        tags: ['Rebrand', 'Retro']
+        title: 'Red Bull',
+        artist: 'Red Bull',
+        year: 'Ongoing',
+        description: 'Active and sporty brand.',
+        image: 'https://picsum.photos/id/47/400/300',
+        tags: ['Lifestyle', 'Energy']
       },
       {
-        title: 'Mailchimp',
-        artist: 'Collins',
-        year: '2018',
-        description: 'Quirky and expressive identity.',
-        image: 'https://picsum.photos/id/1095/400/300',
-        tags: ['Identity', 'Illustration']
-      },
-      {
-        title: 'Spotify',
-        artist: 'Collins',
-        year: '2015',
-        description: 'Bursting with color and energy.',
-        image: 'https://picsum.photos/id/1096/400/300',
-        tags: ['Identity', 'Music']
-      },
-      {
-        title: 'Airbnb',
+        title: 'Airbnb Bélo',
         artist: 'DesignStudio',
         year: '2014',
-        description: 'The Bélo: a symbol of belonging.',
-        image: 'https://picsum.photos/id/1097/400/300',
-        tags: ['Identity', 'Travel']
+        description: 'Globally recognizable mark.',
+        image: 'https://picsum.photos/id/48/400/300',
+        tags: ['Logo', 'Travel']
       },
       {
-        title: 'Premier League',
-        artist: 'DesignStudio',
-        year: '2016',
-        description: 'A vibrant and digital-first sports brand.',
-        image: 'https://picsum.photos/id/1098/400/300',
-        tags: ['Sports', 'Vibrant']
-      },
-      {
-        title: 'Olympics 2028',
-        artist: 'Various',
-        year: '2020',
-        description: 'A dynamic and ever-changing logo.',
-        image: 'https://picsum.photos/id/1099/400/300',
-        tags: ['Identity', 'Dynamic']
+        title: 'Spotify Branding',
+        artist: 'Spotify',
+        year: '2015',
+        description: 'Dynamic brand for multiple platforms.',
+        image: 'https://picsum.photos/id/49/400/300',
+        tags: ['Identity', 'Music']
       }
     ]
   },
   {
     id: 'motion',
-    name: 'Motion',
+    name: 'Motion Design',
     color: 0xaa00ff, // Purple
     description: 'Bringing design to life through movement.',
     works: [
       {
-        title: 'Motion Pieces',
-        artist: 'Buck Studio',
+        title: 'Title Sequences',
+        artist: 'Saul Bass',
         year: 'Various',
-        description: 'Stylized and character-driven motion graphics.',
-        image: 'https://picsum.photos/id/1045/400/300',
-        tags: ['Animation', 'Commercial']
+        description: 'Iconic moving title sequences.',
+        image: 'https://picsum.photos/id/50/400/300',
+        tags: ['Film', 'Titles']
       },
       {
-        title: 'Short Films',
+        title: 'Se7en Titles',
+        artist: 'Kyle Cooper',
+        year: '1995',
+        description: 'Psychological effect through motion and textures.',
+        image: 'https://picsum.photos/id/51/400/300',
+        tags: ['Film', 'Dark']
+      },
+      {
+        title: 'Buck Motion',
+        artist: 'Buck',
+        year: 'Ongoing',
+        description: 'Creative studio setting modern trends.',
+        image: 'https://picsum.photos/id/52/400/300',
+        tags: ['Studio', 'Modern']
+      },
+      {
+        title: 'Glen Keane Animation',
+        artist: 'Glen Keane',
+        year: 'Various',
+        description: 'Storytelling through movement and characters.',
+        image: 'https://picsum.photos/id/53/400/300',
+        tags: ['Animation', 'Character']
+      },
+      {
+        title: 'Disney Pixar Shorts',
         artist: 'Pixar',
         year: 'Various',
-        description: 'Storytelling mastery through computer animation.',
-        image: 'https://picsum.photos/id/1047/400/300',
-        tags: ['3D', 'Storytelling']
+        description: 'Inspiring shorts with high-level animation.',
+        image: 'https://picsum.photos/id/54/400/300',
+        tags: ['3D', 'Shorts']
       },
       {
-        title: 'Animation Reels',
-        artist: 'Giant Ant',
+        title: 'Ash Thorp Motion',
+        artist: 'Ash Thorp',
         year: 'Various',
-        description: 'Distinctive 2D animation and mixed media work.',
-        image: 'https://picsum.photos/id/1048/400/300',
-        tags: ['2D', 'Creative']
+        description: 'Innovations in film and advertising.',
+        image: 'https://picsum.photos/id/55/400/300',
+        tags: ['Concept', 'Sci-Fi']
       },
       {
-        title: 'Into the Spider-Verse',
-        artist: 'Sony Animation',
-        year: '2018',
-        description: 'Revolutionary comic-book style animation.',
-        image: 'https://picsum.photos/id/1100/400/300',
-        tags: ['3D', 'Stylized']
+        title: 'Blur Studio',
+        artist: 'Blur',
+        year: 'Ongoing',
+        description: 'High-quality visuals for games and film.',
+        image: 'https://picsum.photos/id/56/400/300',
+        tags: ['CGI', 'Games']
       },
       {
-        title: 'Arcane',
-        artist: 'Fortiche',
-        year: '2021',
-        description: 'Painted textures meets 3D animation.',
-        image: 'https://picsum.photos/id/1101/400/300',
-        tags: ['Series', 'Stylized']
+        title: 'ManvsMachine',
+        artist: 'ManvsMachine',
+        year: 'Ongoing',
+        description: 'Expressive video graphics.',
+        image: 'https://picsum.photos/id/57/400/300',
+        tags: ['Commercial', 'Abstract']
       },
       {
-        title: 'Love, Death & Robots',
-        artist: 'Various',
-        year: '2019-Present',
-        description: 'Anthology series showcasing diverse animation styles.',
-        image: 'https://picsum.photos/id/1102/400/300',
-        tags: ['Anthology', 'Sci-Fi']
+        title: 'Motion Theory',
+        artist: 'Motion Theory',
+        year: 'Ongoing',
+        description: 'Influence on visual language of modern video projects.',
+        image: 'https://picsum.photos/id/58/400/300',
+        tags: ['Music Video', 'Ads']
       },
       {
-        title: 'Klaus',
-        artist: 'SPA Studios',
-        year: '2019',
-        description: '2D animation with 3D lighting techniques.',
-        image: 'https://picsum.photos/id/1103/400/300',
-        tags: ['2D', 'Christmas']
-      },
-      {
-        title: 'Wolfwalkers',
-        artist: 'Cartoon Saloon',
-        year: '2020',
-        description: 'Hand-drawn animation with unique perspective.',
-        image: 'https://picsum.photos/id/1104/400/300',
-        tags: ['2D', 'Folklore']
-      },
-      {
-        title: 'Primal',
-        artist: 'Genndy Tartakovsky',
-        year: '2019',
-        description: 'Visceral storytelling without dialogue.',
-        image: 'https://picsum.photos/id/1105/400/300',
-        tags: ['2D', 'Action']
-      },
-      {
-        title: 'Samurai Jack',
-        artist: 'Genndy Tartakovsky',
-        year: '2001-2017',
-        description: 'Cinematic action and visual storytelling.',
-        image: 'https://picsum.photos/id/1106/400/300',
-        tags: ['2D', 'Action']
-      },
-      {
-        title: 'Midnight Gospel',
-        artist: 'Pendleton Ward',
-        year: '2020',
-        description: 'Psychedelic visuals accompanying deep conversations.',
-        image: 'https://picsum.photos/id/1107/400/300',
-        tags: ['2D', 'Surreal']
-      },
-      {
-        title: 'Adventure Time',
-        artist: 'Pendleton Ward',
-        year: '2010-2018',
-        description: 'Imaginative world-building and character design.',
-        image: 'https://picsum.photos/id/1108/400/300',
-        tags: ['2D', 'Fantasy']
-      },
-      {
-        title: 'Gravity Falls',
-        artist: 'Alex Hirsch',
-        year: '2012-2016',
-        description: 'Mystery and humor in the Oregon woods.',
-        image: 'https://picsum.photos/id/1109/400/300',
-        tags: ['2D', 'Mystery']
+        title: 'Chris Do / The Futur',
+        artist: 'Chris Do',
+        year: 'Ongoing',
+        description: 'Educational and informative animation.',
+        image: 'https://picsum.photos/id/59/400/300',
+        tags: ['Education', 'Design']
       }
     ]
   },
   {
     id: '3d-concept',
-    name: '3D & Concept',
+    name: '3D',
     color: 0x00ffff, // Cyan/Turquoise
     description: 'Visualizing the impossible and the future.',
     works: [
       {
-        title: 'Robotic Designs',
-        artist: 'Vitaly Bulgarov',
+        title: 'Everydays',
+        artist: 'Beeple',
+        year: 'Ongoing',
+        description: 'Digital 3D art and NFT influence.',
+        image: 'https://picsum.photos/id/60/400/300',
+        tags: ['Digital', 'Daily']
+      },
+      {
+        title: 'Goro Fujita Art',
+        artist: 'Goro Fujita',
+        year: 'Ongoing',
+        description: 'VR and visual storytelling.',
+        image: 'https://picsum.photos/id/61/400/300',
+        tags: ['VR', 'Illustration']
+      },
+      {
+        title: 'Ash Thorp 3D',
+        artist: 'Ash Thorp',
+        year: 'Ongoing',
+        description: 'Integrating 3D into film and advertising.',
+        image: 'https://picsum.photos/id/62/400/300',
+        tags: ['Concept', 'Film']
+      },
+      {
+        title: 'Ian Sprigger',
+        artist: 'Ian Sprigger',
+        year: 'Ongoing',
+        description: 'Character design for games and animation.',
+        image: 'https://picsum.photos/id/63/400/300',
+        tags: ['Character', 'Realistic']
+      },
+      {
+        title: 'Blender Open Movies',
+        artist: 'Blender Foundation',
         year: 'Various',
-        description: 'Intricate mechanical designs for films and games.',
-        image: 'https://picsum.photos/id/1050/400/300',
-        tags: ['Sci-Fi', 'Hard Surface']
+        description: 'Open-source 3D and educational projects.',
+        image: 'https://picsum.photos/id/64/400/300',
+        tags: ['Open Source', 'Film']
       },
       {
-        title: 'Cinematic Concept Art',
-        artist: 'Jama Jurabaev',
-        year: 'Various',
-        description: 'Epic scale environments and storytelling frames.',
-        image: 'https://picsum.photos/id/1051/400/300',
-        tags: ['Environment', 'Cinematic']
+        title: 'Pixar Render',
+        artist: 'Pixar',
+        year: 'Ongoing',
+        description: 'Benchmark for 3D animation.',
+        image: 'https://picsum.photos/id/65/400/300',
+        tags: ['Animation', 'Render']
       },
       {
-        title: 'Award Winning Works',
-        artist: 'ArtStation Community',
-        year: '2023',
-        description: 'Top tier digital art from around the globe.',
-        image: 'https://picsum.photos/id/1052/400/300',
-        tags: ['Community', 'Various']
+        title: 'Maya Demos',
+        artist: 'Autodesk',
+        year: 'Ongoing',
+        description: 'Industry-standard tool demonstrations.',
+        image: 'https://picsum.photos/id/66/400/300',
+        tags: ['Tech', 'Demo']
       },
       {
-        title: 'Dune Concept Art',
+        title: 'ZBrush Characters',
         artist: 'Various',
-        year: '2021',
-        description: 'Massive scale and brutalist aesthetics.',
-        image: 'https://picsum.photos/id/1110/400/300',
-        tags: ['Film', 'Sci-Fi']
+        year: 'Ongoing',
+        description: 'Sculpting characters and creative 3D design.',
+        image: 'https://picsum.photos/id/67/400/300',
+        tags: ['Sculpting', 'Character']
       },
       {
-        title: 'Avatar Environments',
-        artist: 'Weta Digital',
-        year: '2009',
-        description: 'Creating the bioluminescent world of Pandora.',
-        image: 'https://picsum.photos/id/1111/400/300',
-        tags: ['Film', 'Environment']
+        title: 'Unreal Engine',
+        artist: 'Epic Games',
+        year: 'Ongoing',
+        description: 'Photorealistic 3D worlds and interactive content.',
+        image: 'https://picsum.photos/id/68/400/300',
+        tags: ['Realtime', 'Game']
       },
       {
-        title: 'The Last of Us',
-        artist: 'Naughty Dog',
-        year: '2013',
-        description: 'Post-apocalyptic beauty and decay.',
-        image: 'https://picsum.photos/id/1112/400/300',
-        tags: ['Game', 'Environment']
-      },
-      {
-        title: 'God of War',
-        artist: 'Santa Monica Studio',
-        year: '2018',
-        description: 'Mythological realms reimagined.',
-        image: 'https://picsum.photos/id/1113/400/300',
-        tags: ['Game', 'Fantasy']
-      },
-      {
-        title: 'Elden Ring',
-        artist: 'FromSoftware',
-        year: '2022',
-        description: 'Dark fantasy landscapes and creature design.',
-        image: 'https://picsum.photos/id/1114/400/300',
-        tags: ['Game', 'Dark Fantasy']
-      },
-      {
-        title: 'Horizon Zero Dawn',
-        artist: 'Guerrilla Games',
-        year: '2017',
-        description: 'Nature reclaiming technology.',
-        image: 'https://picsum.photos/id/1115/400/300',
-        tags: ['Game', 'Sci-Fi']
-      },
-      {
-        title: 'Destiny 2',
-        artist: 'Bungie',
-        year: '2017',
-        description: 'Space magic and futuristic vistas.',
-        image: 'https://picsum.photos/id/1116/400/300',
-        tags: ['Game', 'Sci-Fi']
-      },
-      {
-        title: 'Control',
-        artist: 'Remedy',
-        year: '2019',
-        description: 'Brutalist architecture and paranormal phenomena.',
-        image: 'https://picsum.photos/id/1117/400/300',
-        tags: ['Game', 'Surreal']
-      },
-      {
-        title: 'Death Stranding',
-        artist: 'Kojima Productions',
-        year: '2019',
-        description: 'Hauntingly beautiful landscapes.',
-        image: 'https://picsum.photos/id/1118/400/300',
-        tags: ['Game', 'Sci-Fi']
-      },
-      {
-        title: 'Half-Life: Alyx',
-        artist: 'Valve',
-        year: '2020',
-        description: 'Immersive VR environments.',
-        image: 'https://picsum.photos/id/1119/400/300',
-        tags: ['VR', 'Sci-Fi']
+        title: 'Quixel Megascans',
+        artist: 'Quixel',
+        year: 'Ongoing',
+        description: 'Photorealistic textures and assets for 3D scenes.',
+        image: 'https://picsum.photos/id/69/400/300',
+        tags: ['Assets', 'Realistic']
       }
     ]
   }
