@@ -44,7 +44,10 @@ export class SceneManager {
 
         this.createGrid();
         this.createStars();
-        this.createBlackHole();
+        this.createGrid();
+        this.createStars();
+        // this.createBlackHole(); // Removed
+        this.createPlanets();
         this.createPlanets();
         this.addLights();
 
@@ -62,13 +65,13 @@ export class SceneManager {
     }
 
     createGrid() {
-        const gridHelper = new THREE.GridHelper(100, 40, 0x00f3ff, 0x111111);
+        const gridHelper = new THREE.GridHelper(100, 40, 0x0066ff, 0xdddddd);
         gridHelper.position.y = -8;
-        gridHelper.material.opacity = 0.2;
+        gridHelper.material.opacity = 0.4;
         gridHelper.material.transparent = true;
         this.scene.add(gridHelper);
 
-        const gridHelperTop = new THREE.GridHelper(100, 20, 0x222222, 0x050505);
+        const gridHelperTop = new THREE.GridHelper(100, 20, 0xcccccc, 0xffffff);
         gridHelperTop.position.y = 20;
         this.scene.add(gridHelperTop);
     }
@@ -84,38 +87,18 @@ export class SceneManager {
 
         particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
         const material = new THREE.PointsMaterial({
-            size: 0.05,
-            color: 0x00f3ff,
+            size: 0.08,
+            color: 0x333333,
             transparent: true,
             opacity: 0.6,
-            blending: THREE.AdditiveBlending
+            // blending: THREE.AdditiveBlending // Removed for visibility on light bg
         });
 
         this.stars = new THREE.Points(particlesGeometry, material);
         this.scene.add(this.stars);
     }
 
-    createBlackHole() {
-        // A simple black sphere to block stars behind it, adding depth
-        const geometry = new THREE.SphereGeometry(5, 32, 32);
-        const material = new THREE.MeshBasicMaterial({ color: 0x000000 });
-        this.blackHole = new THREE.Mesh(geometry, material);
-        this.blackHole.position.z = -20;
-        this.scene.add(this.blackHole);
-
-        // Accretion disk
-        const diskGeo = new THREE.RingGeometry(6, 12, 64);
-        const diskMat = new THREE.MeshBasicMaterial({
-            color: 0x00f3ff,
-            side: THREE.DoubleSide,
-            transparent: true,
-            opacity: 0.1
-        });
-        const disk = new THREE.Mesh(diskGeo, diskMat);
-        disk.rotation.x = Math.PI / 2;
-        disk.position.z = -20;
-        this.scene.add(disk);
-    }
+    // createBlackHole() removed
 
     createPlanets() {
         const geometry = new THREE.IcosahedronGeometry(1.8, 1);
@@ -127,16 +110,16 @@ export class SceneManager {
 
             // Wireframe Material
             const material = new THREE.MeshBasicMaterial({
-                color: 0xffffff,
+                color: 0x333333, // Dark Gray for visibility
                 wireframe: true,
                 transparent: true,
-                opacity: 0.3
+                opacity: 0.6 // Increased opacity
             });
 
             // Inner Core
             const coreGeo = new THREE.IcosahedronGeometry(1.0, 0);
             const coreMat = new THREE.MeshBasicMaterial({
-                color: 0x00f3ff,
+                color: 0x0066ff, // Accent Blue
                 wireframe: true
             });
             const core = new THREE.Mesh(coreGeo, coreMat);
@@ -149,7 +132,7 @@ export class SceneManager {
 
             // Rings
             const ringGeo = new THREE.TorusGeometry(3.0, 0.03, 16, 100);
-            const ringMat = new THREE.MeshBasicMaterial({ color: 0x444444 });
+            const ringMat = new THREE.MeshBasicMaterial({ color: 0xaaaaaa });
             const ring = new THREE.Mesh(ringGeo, ringMat);
             ring.rotation.x = Math.PI / 2;
             planet.add(ring);
@@ -314,14 +297,14 @@ export class SceneManager {
                     this.hoveredPlanet = object;
                     document.body.style.cursor = 'pointer';
                     gsap.to(object.scale, { x: 1.3, y: 1.3, z: 1.3, duration: 0.3 });
-                    object.material.opacity = 0.8;
-                    object.material.color.setHex(0x00f3ff);
+                    object.material.opacity = 1;
+                    object.material.color.setHex(0x0066ff);
                 }
             } else {
                 if (this.hoveredPlanet) {
                     gsap.to(this.hoveredPlanet.scale, { x: 1, y: 1, z: 1, duration: 0.3 });
-                    this.hoveredPlanet.material.opacity = 0.3;
-                    this.hoveredPlanet.material.color.setHex(0xffffff);
+                    this.hoveredPlanet.material.opacity = 0.6;
+                    this.hoveredPlanet.material.color.setHex(0x333333);
                     this.hoveredPlanet = null;
                     document.body.style.cursor = 'default';
                 }
