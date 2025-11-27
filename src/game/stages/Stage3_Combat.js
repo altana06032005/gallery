@@ -3,12 +3,18 @@ export class Stage3_Combat {
         this.container = container;
         this.gameManager = gameManager;
         this.enemiesDestroyed = 0;
-        this.targetKills = 20; // Reduced for demo, user asked for 50-150 clicks, maybe 20 enemies * 2-3 clicks = 40-60 clicks
+        this.targetKills = 20;
         this.enemies = [];
         this.lastSpawnTime = 0;
         this.spawnInterval = 1500;
         this.projectiles = [];
         this.explosions = [];
+        this.muzzleFlashes = [];
+
+        // Для визуальных эффектов при нарушении линии
+        this.flashRed = false;
+        this.flashRedTimer = 0;
+        this.minusOneText = null;
     }
 
     init() {
@@ -32,48 +38,25 @@ export class Stage3_Combat {
           <div class="status-text">DEFEND THE SHIP</div>
           <div class="progress">ENEMIES DESTROYED: <span id="kill-count">0</span>/${this.targetKills}</div>
         </div>
-        <!-- Cockpit Overlay -->
         <div class="cockpit-overlay">
            <svg width="100%" height="100%" preserveAspectRatio="none">
-             <path d="M0 100% L200 100% L100 80% Z" fill="rgba(0, 243, 255, 0.1)" stroke="var(--neon-cyan)" stroke-width="2"/>
-             <path d="M100% 100% Lcalc(100% - 200px) 100% Lcalc(100% - 100px) 80% Z" fill="rgba(0, 243, 255, 0.1)" stroke="var(--neon-cyan)" stroke-width="2"/>
-             <line x1="0" y1="50%" x2="100%" y2="50%" stroke="var(--neon-cyan)" stroke-width="1" stroke-dasharray="5,5" opacity="0.3"/>
-             <circle cx="50%" cy="50%" r="20" stroke="var(--neon-magenta)" stroke-width="2" fill="none"/>
+             <path d="M0 100% L200 100% L100 80% Z" fill="rgba(0, 85, 170, 0.1)" stroke="#0055aa" stroke-width="2"/>
+             <path d="M100% 100% Lcalc(100% - 200px) 100% Lcalc(100% - 100px) 80% Z" fill="rgba(0, 85, 170, 0.1)" stroke="#0055aa" stroke-width="2"/>
+             <line x1="0" y1="50%" x2="100%" y2="50%" stroke="#0055aa" stroke-width="1" stroke-dasharray="5,5" opacity="0.3"/>
+             <circle cx="50%" cy="50%" r="20" stroke="#e74c3c" stroke-width="2" fill="none"/>
            </svg>
         </div>
       </div>
     `;
-
         const style = document.createElement('style');
         style.textContent = `
-      .stage-combat {
-        width: 100%;
-        height: 100%;
-        position: relative;
-        cursor: crosshair;
-      }
-      #combat-canvas {
-        width: 100%;
-        height: 100%;
-        background: var(--bg-color);
-      }
-      .hud {
-        position: absolute;
-        top: 20px;
-        width: 100%;
-        text-align: center;
-        pointer-events: none;
-        z-index: 20;
-      }
-      .cockpit-overlay {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        z-index: 10;
-      }
+      .stage-combat { width: 100%; height: 100%; position: relative; cursor: crosshair; background: #f0f4f8; }
+      #combat-canvas { width: 100%; height: 100%; }
+      .hud { position: absolute; top: 20px; width: 100%; text-align: center; pointer-events: none; z-index: 20; }
+      .hud h1 { font-size: 1.5rem; color: #0055aa; margin-bottom: 5px; font-family: 'Orbitron', sans-serif; }
+      .status-text { color: #0055aa; font-family: 'Orbitron', sans-serif; font-size: 1rem; opacity: 0.8; }
+      .progress { color: #333; font-weight: bold; margin-top: 5px; }
+      .cockpit-overlay { position: absolute; bottom: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 10; }
     `;
         this.container.appendChild(style);
         this.killCountEl = document.getElementById('kill-count');
@@ -92,14 +75,15 @@ export class Stage3_Combat {
         // Visual feedback for shooting
         this.projectiles.push({
             startX: this.canvas.width / 2,
-            startY: this.canvas.height, // From bottom center
+            startY: this.canvas.height,
             endX: x,
             endY: y,
             progress: 0
         });
 
+        this.muzzleFlashes.push({ x: this.canvas.width / 2, y: this.canvas.height, size: 30, alpha: 1 });
+
         // Check hits
-        // Iterate backwards to remove
         for (let i = this.enemies.length - 1; i >= 0; i--) {
             const enemy = this.enemies[i];
             const dx = x - enemy.x;
@@ -108,11 +92,9 @@ export class Stage3_Combat {
 
             if (dist < enemy.size) {
                 enemy.hp--;
-                enemy.hitFlash = 5; // Frames to flash
-                if (enemy.hp <= 0) {
-                    this.destroyEnemy(i);
-                }
-                break; // Hit one at a time
+                enemy.hitFlash = 5;
+                if (enemy.hp <= 0) this.destroyEnemy(i);
+                break;
             }
         }
     }
@@ -123,149 +105,180 @@ export class Stage3_Combat {
         this.enemiesDestroyed++;
         this.killCountEl.textContent = this.enemiesDestroyed;
 
-        // Explosion effect
-        this.explosions.push({
-            x: enemy.x,
-            y: enemy.y,
-            radius: 1,
-            maxRadius: enemy.size * 2,
-            alpha: 1
-        });
+        this.explosions.push({ x: enemy.x, y: enemy.y, radius: 1, maxRadius: enemy.size * 2, alpha: 1 });
 
-        if (this.enemiesDestroyed >= this.targetKills) {
-            setTimeout(() => this.completeStage(), 1000);
-        }
+        if (this.enemiesDestroyed >= this.targetKills) setTimeout(() => this.completeStage(), 1000);
     }
 
     spawnEnemy() {
         const type = Math.random();
-        let hp = 1;
-        let size = 30;
-        let color = '#00f3ff'; // Cyan
-        let speed = 1 + Math.random();
-
-        if (type > 0.9) { // Boss/Rare
-            hp = 3;
-            size = 50;
-            color = '#ff00ff'; // Magenta
-            speed = 0.5;
-        } else if (type > 0.6) { // Stronger
-            hp = 2;
-            size = 40;
-            color = '#ffffff'; // White
-            speed = 0.8;
-        }
+        let hp = 1, size = 30, color = '#0055aa', speed = 2 + Math.random() * 2, enemyType = 'scout';
+        if (type > 0.9) { hp = 3; size = 50; color = '#e74c3c'; speed = 0.5; enemyType = 'boss'; }
+        else if (type > 0.6) { hp = 2; size = 40; color = '#333333'; speed = 0.8; enemyType = 'fighter'; }
 
         this.enemies.push({
             x: Math.random() * (this.canvas.width - 100) + 50,
-            y: -50, // Start above screen
-            size: size,
-            hp: hp,
-            maxHp: hp,
-            color: color,
-            speed: speed,
-            hitFlash: 0
+            y: -50,
+            size, hp, maxHp: hp, color, speed, hitFlash: 0, type: enemyType, crossedTerritory: false
         });
     }
 
+    drawEnemyShip(ctx, enemy) {
+        ctx.save();
+        ctx.translate(enemy.x, enemy.y);
+        ctx.scale(enemy.size / 30, enemy.size / 30);
+        ctx.strokeStyle = enemy.hitFlash > 0 ? '#00f2ff' : enemy.color;
+        ctx.lineWidth = 2;
+        ctx.fillStyle = enemy.hitFlash > 0 ? 'rgba(0, 242, 255, 0.5)' : '#ffffff';
+
+        ctx.beginPath();
+        if (enemy.type === 'boss') { ctx.moveTo(0, 20); ctx.lineTo(15, 0); ctx.lineTo(25, -10); ctx.lineTo(10, -20); ctx.lineTo(-10, -20); ctx.lineTo(-25, -10); ctx.lineTo(-15, 0); ctx.closePath(); ctx.moveTo(0, 0); ctx.lineTo(0, -15); }
+        else if (enemy.type === 'fighter') { ctx.moveTo(0, 15); ctx.lineTo(10, -5); ctx.lineTo(20, -10); ctx.lineTo(5, -15); ctx.lineTo(-5, -15); ctx.lineTo(-20, -10); ctx.lineTo(-10, -5); ctx.closePath(); }
+        else { ctx.moveTo(0, 15); ctx.lineTo(10, -15); ctx.lineTo(0, -5); ctx.lineTo(-10, -15); ctx.closePath(); }
+
+        ctx.fill(); ctx.stroke(); ctx.restore();
+    }
+
     update(timestamp) {
-        if (this.enemiesDestroyed >= this.targetKills && this.enemies.length === 0) {
-            // Waiting for completion timeout
-            // Continue rendering explosions/projectiles
-        } else if (timestamp - this.lastSpawnTime > this.spawnInterval && this.enemiesDestroyed + this.enemies.length < this.targetKills) {
+        // Спавн врагов
+        if (this.enemiesDestroyed >= this.targetKills && this.enemies.length === 0) { }
+        else if (timestamp - this.lastSpawnTime > this.spawnInterval && this.enemiesDestroyed + this.enemies.length < this.targetKills) {
             this.spawnEnemy();
             this.lastSpawnTime = timestamp;
-            // Decrease interval slightly to increase difficulty
             this.spawnInterval = Math.max(500, this.spawnInterval - 10);
         }
 
-        // Clear
-        this.ctx.fillStyle = '#050505';
+        // Очистка канваса
+        this.ctx.fillStyle = '#f0f4f8';
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
-        // Draw Stars (Background) - Simplified from Stage 2
-        this.ctx.fillStyle = 'rgba(255,255,255,0.5)';
-        for (let i = 0; i < 50; i++) {
-            this.ctx.fillRect(Math.random() * this.canvas.width, Math.random() * this.canvas.height, 1, 1);
+        // Фоновые звёзды
+        this.ctx.fillStyle = 'rgba(0, 85, 170, 0.3)';
+        for (let i = 0; i < 50; i++)
+            this.ctx.fillRect(Math.random() * this.canvas.width, Math.random() * this.canvas.height, 2, 2);
+
+        // Обновление врагов
+        for (let i = this.enemies.length - 1; i >= 0; i--) {
+            const enemy = this.enemies[i];
+            enemy.y += enemy.speed * 1.5;
+
+            // Проверка пересечения линии
+            if (!enemy.crossedTerritory && enemy.y >= this.canvas.height / 2) {
+                enemy.crossedTerritory = true;
+                this.enemies.splice(i, 1);
+                this.flashRed = true;
+                this.flashRedTimer = 60;
+
+                this.minusOneText = { x: this.canvas.width / 2, y: this.canvas.height / 2, alpha: 1 };
+
+                this.enemiesDestroyed = Math.max(0, this.enemiesDestroyed - 1);
+                this.killCountEl.textContent = this.enemiesDestroyed;
+                continue;
+            }
+
+            this.drawEnemyShip(this.ctx, enemy);
+            if (enemy.hitFlash > 0) enemy.hitFlash--;
+
+            // Стрельба врагов
+            if (Math.random() < 0.02) {
+                this.projectiles.push({
+                    startX: enemy.x,
+                    startY: enemy.y - enemy.speed, // снаряд начинается чуть вперед по траектории
+                    endX: this.canvas.width / 2 + (Math.random() - 0.5) * 200,
+                    endY: this.canvas.height,
+                    progress: 0,
+                    isEnemy: true
+                });
+
+                this.muzzleFlashes.push({ x: enemy.x, y: enemy.y + 20, size: 15, alpha: 1, color: '#e74c3c' });
+            }
+
+            if (enemy.y > this.canvas.height + 50) this.enemies.splice(i, 1);
         }
 
-        // Update and Draw Enemies
-        this.enemies.forEach(enemy => {
-            enemy.y += enemy.speed;
-
-            // Draw Enemy
-            this.ctx.save();
-            this.ctx.translate(enemy.x, enemy.y);
-            this.ctx.beginPath();
-            if (enemy.maxHp === 3) { // Diamond
-                this.ctx.moveTo(0, -enemy.size);
-                this.ctx.lineTo(enemy.size, 0);
-                this.ctx.lineTo(0, enemy.size);
-                this.ctx.lineTo(-enemy.size, 0);
-            } else if (enemy.maxHp === 2) { // Triangle
-                this.ctx.moveTo(0, -enemy.size);
-                this.ctx.lineTo(enemy.size, enemy.size);
-                this.ctx.lineTo(-enemy.size, enemy.size);
-            } else { // Circle/Basic
-                this.ctx.arc(0, 0, enemy.size, 0, Math.PI * 2);
-            }
-            this.ctx.closePath();
-
-            this.ctx.strokeStyle = enemy.hitFlash > 0 ? '#ffffff' : enemy.color;
-            this.ctx.lineWidth = 2;
-            this.ctx.stroke();
-
-            // Inner fill for hit flash
-            if (enemy.hitFlash > 0) {
-                this.ctx.fillStyle = 'rgba(255,255,255,0.5)';
-                this.ctx.fill();
-                enemy.hitFlash--;
-            }
-
-            this.ctx.restore();
-
-            // Reset if off screen (player missed) - for now just respawn at top or let it pass
-            if (enemy.y > this.canvas.height + 50) {
-                enemy.y = -50;
-                enemy.x = Math.random() * (this.canvas.width - 100) + 50;
-            }
-        });
-
-        // Update and Draw Projectiles
+        // Анимация снарядов
         for (let i = this.projectiles.length - 1; i >= 0; i--) {
             const p = this.projectiles[i];
-            p.progress += 0.1;
-
+            p.progress += 0.09;
             const currentX = p.startX + (p.endX - p.startX) * p.progress;
             const currentY = p.startY + (p.endY - p.startY) * p.progress;
 
             this.ctx.beginPath();
-            this.ctx.moveTo(p.startX, p.startY); // Beam style
-            this.ctx.lineTo(currentX, currentY);
-            this.ctx.strokeStyle = `rgba(0, 243, 255, ${1 - p.progress})`;
-            this.ctx.lineWidth = 2;
-            this.ctx.stroke();
+            if (p.isEnemy) {
+                // Вражеский выстрел: пунктир
+                this.ctx.moveTo(p.startX, p.startY);
+                this.ctx.lineTo(currentX, currentY);
+                this.ctx.setLineDash([10, 10]);
+                this.ctx.strokeStyle = '#e74c3c';
+                this.ctx.lineWidth = 3;
+                this.ctx.stroke();
+                this.ctx.setLineDash([]);
+            } else {
+                // Выстрел игрока: плазменный болт
+                const tailLength = 30;
+                const angle = Math.atan2(p.endY - p.startY, p.endX - p.startX);
+                const tailX = currentX - Math.cos(angle) * tailLength;
+                const tailY = currentY - Math.sin(angle) * tailLength;
 
-            if (p.progress >= 1) {
-                this.projectiles.splice(i, 1);
+                this.ctx.moveTo(tailX, tailY);
+                this.ctx.lineTo(currentX, currentY);
+
+                this.ctx.shadowBlur = 10;
+                this.ctx.shadowColor = '#00f2ff';
+                this.ctx.strokeStyle = '#00f2ff';
+                this.ctx.lineWidth = 4;
+                this.ctx.stroke();
+                this.ctx.shadowBlur = 0;
             }
+
+            if (p.progress >= 1) this.projectiles.splice(i, 1);
         }
 
-        // Update and Draw Explosions
+        // Muzzle flashes
+        for (let i = this.muzzleFlashes.length - 1; i >= 0; i--) {
+            const flash = this.muzzleFlashes[i];
+            flash.alpha -= 0.2;
+            this.ctx.save();
+            this.ctx.globalAlpha = flash.alpha;
+            this.ctx.fillStyle = flash.color || '#00f2ff';
+            this.ctx.beginPath();
+            this.ctx.arc(flash.x, flash.y, flash.size, 0, Math.PI * 2);
+            this.ctx.fill();
+            this.ctx.restore();
+
+            if (flash.alpha <= 0) this.muzzleFlashes.splice(i, 1);
+        }
+
+        // Взрывы
         for (let i = this.explosions.length - 1; i >= 0; i--) {
             const exp = this.explosions[i];
             exp.radius += 2;
             exp.alpha -= 0.05;
-
             this.ctx.beginPath();
             this.ctx.arc(exp.x, exp.y, exp.radius, 0, Math.PI * 2);
-            this.ctx.strokeStyle = `rgba(255, 0, 255, ${exp.alpha})`;
+            this.ctx.strokeStyle = `rgba(0, 85, 170, ${exp.alpha})`;
             this.ctx.lineWidth = 2;
             this.ctx.stroke();
+            if (exp.alpha <= 0) this.explosions.splice(i, 1);
+        }
 
-            if (exp.alpha <= 0) {
-                this.explosions.splice(i, 1);
-            }
+        // Красная территория при нарушении линии
+        if (this.flashRed) {
+            this.ctx.fillStyle = 'rgba(255,0,0,0.3)';
+            this.ctx.fillRect(0, this.canvas.height / 2 - 2, this.canvas.width, 4);
+            this.flashRedTimer--;
+            if (this.flashRedTimer <= 0) this.flashRed = false;
+        }
+
+        // Появление "-1"
+        if (this.minusOneText) {
+            this.ctx.globalAlpha = this.minusOneText.alpha;
+            this.ctx.fillStyle = '#ff0000';
+            this.ctx.font = '30px Orbitron';
+            this.ctx.fillText('-1', this.minusOneText.x, this.minusOneText.y);
+            this.minusOneText.alpha -= 0.02;
+            this.ctx.globalAlpha = 1;
+            if (this.minusOneText.alpha <= 0) this.minusOneText = null;
         }
 
         this.loop = requestAnimationFrame(this.update.bind(this));
@@ -282,8 +295,7 @@ export class Stage3_Combat {
     cleanup() {
         cancelAnimationFrame(this.loop);
         window.removeEventListener('resize', this.resizeCanvas);
-        if (this.canvas) {
-            this.canvas.removeEventListener('mousedown', this.handleClick);
-        }
+        if (this.canvas) this.canvas.removeEventListener('mousedown', this.handleClick);
     }
 }
+

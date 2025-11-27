@@ -29,11 +29,11 @@ export class Stage4_Landing {
         width: 100%;
         height: 100%;
         position: relative;
+        background: #f0f4f8;
       }
       #landing-canvas {
         width: 100%;
         height: 100%;
-        background: var(--bg-color);
       }
       .hud {
         position: absolute;
@@ -41,6 +41,19 @@ export class Stage4_Landing {
         width: 100%;
         text-align: center;
         pointer-events: none;
+        z-index: 10;
+      }
+      .hud h1 {
+        font-size: 1.5rem;
+        color: #0055aa;
+        margin-bottom: 5px;
+        font-family: 'Orbitron', sans-serif;
+      }
+      .status-text {
+        color: #0055aa;
+        font-family: 'Orbitron', sans-serif;
+        font-size: 1rem;
+        opacity: 0.8;
       }
     `;
     this.container.appendChild(style);
@@ -61,7 +74,7 @@ export class Stage4_Landing {
     const progress = Math.min(1, elapsed / this.duration);
 
     // Clear
-    this.ctx.fillStyle = '#050505';
+    this.ctx.fillStyle = '#f0f4f8';
     this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
     const centerX = this.canvas.width / 2;
@@ -73,8 +86,7 @@ export class Stage4_Landing {
 
     this.ctx.beginPath();
     this.ctx.arc(centerX, centerY, currentRadius, 0, Math.PI * 2);
-    this.ctx.strokeStyle = 'var(--neon-cyan)';
-    this.ctx.strokeStyle = '#00f3ff';
+    this.ctx.strokeStyle = '#0055aa';
     this.ctx.lineWidth = 2;
     this.ctx.stroke();
 
@@ -85,7 +97,7 @@ export class Stage4_Landing {
     this.ctx.clip(); // Clip to planet circle
 
     // Draw grid
-    this.ctx.strokeStyle = 'rgba(0, 243, 255, 0.3)';
+    this.ctx.strokeStyle = 'rgba(0, 85, 170, 0.2)';
     this.ctx.lineWidth = 1;
 
     // Vertical lines (Longitude) - rotating effect
@@ -110,7 +122,7 @@ export class Stage4_Landing {
 
     // Atmosphere glow
     this.ctx.shadowBlur = 20 * progress;
-    this.ctx.shadowColor = '#00f3ff';
+    this.ctx.shadowColor = 'rgba(0, 242, 255, 0.5)';
     this.ctx.stroke();
     this.ctx.shadowBlur = 0;
 
