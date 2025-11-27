@@ -1,11 +1,8 @@
 import './style.css';
-import { SceneManager } from './scene.js';
-import { UIManager } from './ui.js';
-import { GameManager } from './game.js';
+import { GameManager } from './game/GameManager.js';
 
-const canvas = document.querySelector('#bg-canvas');
-
-// Initialize Managers
-const scene = new SceneManager(canvas);
-const ui = new UIManager();
-const game = new GameManager(scene, ui);
+document.addEventListener('DOMContentLoaded', () => {
+  const app = document.querySelector('#app');
+  const game = new GameManager(app);
+  game.start();
+});
